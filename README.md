@@ -40,3 +40,6 @@ Criar um projeto frontend dentro da pasta packages/frontend:
 - O projeto deve se conectar com o backend e realizar as consultas via graphql;
 - Deve conter uma pagina de login, com campo de e-mail e senha;
 - Ao passar os dados corretamente o usuário deve ser direciona a uma pagina de boas-vindas;
+
+###Orientações gerais
+- Não aceitaremos prs nesse projeto, você precisa criar um fork desse projeto e mandar o link do projeto publicado no seu github.
