@@ -34,6 +34,7 @@ Utilizar a estrutura existente para criar uma mutation para realização de um l
 - Já existe um usuário cadastrado com o email desafio@bondy.com.br e senha 123456, que está salva encriptado utilizando a lib bcrypt;
 - Essa mutation de login deve retornar todas as informações salvas na model User;
 - Ao rodar o projeto com `yarn start` será apresentado no console a url para o Playground para testes de graphql;
+- O projeto deve ter uma autenticação usando JWT;
 
 ### Frontend:
 Criar um projeto frontend dentro da pasta packages/frontend:
@@ -41,5 +42,7 @@ Criar um projeto frontend dentro da pasta packages/frontend:
 - Deve conter uma pagina de login, com campo de e-mail e senha;
 - Ao passar os dados corretamente o usuário deve ser direciona a uma pagina de boas-vindas;
 
-###Orientações gerais
+### Orientações gerais
 - Não aceitaremos prs nesse projeto, você precisa criar um fork desse projeto e mandar o link do projeto publicado no seu github.
+
+
