@@ -5,7 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "test:backend": "lerna run test --scope=backend"
+    "test:backend": "lerna run test --scope=backend",
+    "test-coverage:backend": "lerna run test:coverage --scope=backend"
   },
   "dependencies": {},
   "devDependencies": {
