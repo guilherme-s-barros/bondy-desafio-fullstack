@@ -1,18 +1,17 @@
-import typeDefs from '../typeDefs'
 import { ApolloServer } from '@apollo/server'
+import { buildSubgraphSchema } from '@apollo/subgraph'
 import { ApolloServerPluginInlineTraceDisabled } from '@apollo/server/plugin/disabled'
 import {
   handlers,
   startServerAndCreateLambdaHandler,
 } from '@as-integrations/aws-lambda'
-import { buildSubgraphSchema } from '@apollo/subgraph'
+
+import typeDefs from './typeDefs'
 import resolvers from './resolvers'
-import { connection } from '../memoryDB/connection'
+import { connection } from '../mongoose/db/connection'
 
 const { NODE_ENV = 'local' } = process.env
-
 const schema = buildSubgraphSchema({ typeDefs, resolvers })
-
 const requestHandler = handlers.createAPIGatewayProxyEventRequestHandler()
 
 const apolloServer = new ApolloServer({
