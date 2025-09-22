@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import type { Metadata } from 'next'
@@ -14,6 +15,8 @@ export default function SignIn() {
 	return (
 		<main className="font-sans flex h-screen items-center justify-center">
 			<div className="flex flex-col items-center gap-8 p-4">
+				<Image src="/logo.svg" alt="Bondy Logo" width={200} height={200} />
+
 				<div className="text-center space-y-1">
 					<h1 className="text-2xl font-bold">Acessar conta</h1>
 					<p className="text-muted-foreground">
