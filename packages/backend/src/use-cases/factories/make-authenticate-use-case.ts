@@ -2,8 +2,8 @@ import { MongooseUsersRepository } from '@/infra/mongoose/repositories/mongoose-
 import { AuthenticateUseCase } from '../authenticate'
 
 export function makeAuthenticateUseCase() {
-  const mongooseUsersRepository = new MongooseUsersRepository()
-  const authenticateUseCase = new AuthenticateUseCase(mongooseUsersRepository)
+	const mongooseUsersRepository = new MongooseUsersRepository()
+	const authenticateUseCase = new AuthenticateUseCase(mongooseUsersRepository)
 
-  return authenticateUseCase
+	return authenticateUseCase
 }
