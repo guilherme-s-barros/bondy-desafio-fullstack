@@ -18,7 +18,7 @@ export default function SignIn() {
 				<Image src="/logo.svg" alt="Bondy Logo" width={200} height={200} />
 
 				<div className="text-center space-y-1">
-					<h1 className="text-2xl font-bold">Acessar conta</h1>
+					<h1 className="text-3xl font-bold tracking-tight">Acessar conta</h1>
 					<p className="text-muted-foreground">
 						Para entrar na aplicação, é necessário se autenticar.
 					</p>
