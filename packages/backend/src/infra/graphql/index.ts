@@ -7,6 +7,7 @@ import {
 } from '@as-integrations/aws-lambda'
 
 import { connection } from '../mongoose/db/connection'
+import { setHeadersPlugin } from './plugins/set-headers-plugin'
 import resolvers from './resolvers'
 import typeDefs from './typeDefs'
 
@@ -16,7 +17,7 @@ const requestHandler = handlers.createAPIGatewayProxyEventRequestHandler()
 
 const apolloServer = new ApolloServer({
 	schema,
-	plugins: [ApolloServerPluginInlineTraceDisabled()],
+	plugins: [ApolloServerPluginInlineTraceDisabled(), setHeadersPlugin],
 	includeStacktraceInErrorResponses: true,
 	status400ForVariableCoercionErrors: true,
 	introspection: true,
@@ -35,6 +36,7 @@ const buildContext = startServerAndCreateLambdaHandler(
 				functionName: context.functionName,
 				event,
 				context,
+				setHeaders: [],
 			}
 		},
 	},
