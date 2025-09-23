@@ -8,12 +8,7 @@ export default gql`
     company: String
   }
 
-  type LoginResponse {
-    token: String!
-    user: User!
-  }
-
   type Mutation {
-    authenticate(email: String!, password: String!): LoginResponse!
+    authenticate(email: String!, password: String!): User!
   }
 `
