@@ -2,6 +2,8 @@ import { Geist, Geist_Mono } from 'next/font/google'
 
 import type { Metadata } from 'next'
 
+import { ApolloWrapper } from '@/components/apollo-wrapper'
+
 import './globals.css'
 
 const geistSans = Geist({
@@ -33,7 +35,7 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				{children}
+				<ApolloWrapper>{children}</ApolloWrapper>
 			</body>
 		</html>
 	)
