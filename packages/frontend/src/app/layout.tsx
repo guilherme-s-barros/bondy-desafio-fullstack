@@ -6,6 +6,8 @@ import { ApolloWrapper } from '@/components/apollo-wrapper'
 
 import './globals.css'
 
+import { Toaster } from '@/components/ui/sonner'
+
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin'],
@@ -36,6 +38,7 @@ export default function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				<ApolloWrapper>{children}</ApolloWrapper>
+				<Toaster richColors />
 			</body>
 		</html>
 	)
