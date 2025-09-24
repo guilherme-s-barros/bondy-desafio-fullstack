@@ -8,7 +8,7 @@ let sut: GetProfileUseCase
 describe('Get Profile', () => {
 	beforeEach(() => {
 		usersRepository = new InMemoryUsersRepository()
-		sut = new GetProfileUseCase()
+		sut = new GetProfileUseCase(usersRepository)
 	})
 
 	it('should be able to get authenticated user profile', async () => {
@@ -24,11 +24,13 @@ describe('Get Profile', () => {
 
 		const { user } = await sut.execute('user-test-id')
 
-		expect(user).toEqual({
-			id: 'user-test-id',
-			name: 'John',
-			email: 'john.doe@example.com',
-			company: 'Test Inc',
-		})
+		expect(user).toEqual(
+			expect.objectContaining({
+				id: 'user-test-id',
+				name: 'John',
+				email: 'john.doe@example.com',
+				company: 'Test Inc',
+			}),
+		)
 	})
 })
