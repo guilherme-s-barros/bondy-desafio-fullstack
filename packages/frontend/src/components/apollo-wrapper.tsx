@@ -10,6 +10,7 @@ import {
 function makeClient() {
 	const httpLink = new HttpLink({
 		uri: 'http://localhost:3000/local/desafio',
+		credentials: 'include',
 	})
 
 	return new ApolloClient({
