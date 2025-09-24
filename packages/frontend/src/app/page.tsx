@@ -1,6 +1,30 @@
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
+import { gql } from '@apollo/client'
 
-export default function Home() {
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
+import { getClient } from '@/lib/apollo-client'
+
+import type { GetProfileQuery } from '@/graphql/generated'
+
+const GET_PROFILE = gql`
+	query getProfile {
+	  getProfile {
+			id
+      name
+      email
+      company
+		}
+	}
+`
+
+export default async function Home() {
+	const client = await getClient()
+
+	const { data } = await client.query<GetProfileQuery>({
+		query: GET_PROFILE,
+	})
+
+	const profile = data?.getProfile
+
 	return (
 		<main className="font-sans flex h-screen items-center justify-center">
 			<div className="flex flex-col items-center gap-8 p-4">
@@ -11,21 +35,19 @@ export default function Home() {
 					<TableBody>
 						<TableRow>
 							<TableCell>ID:</TableCell>
-							<TableCell className="font-mono">
-								lkj4lk5j4lh5l6h5lkj5lk
-							</TableCell>
+							<TableCell className="font-mono">{profile?.id}</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Nome:</TableCell>
-							<TableCell>João</TableCell>
+							<TableCell>{profile?.name}</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>E-mail:</TableCell>
-							<TableCell>john.doe@example.com</TableCell>
+							<TableCell>{profile?.email}</TableCell>
 						</TableRow>
 						<TableRow>
 							<TableCell>Empresa:</TableCell>
-							<TableCell>Test Inc</TableCell>
+							<TableCell>{profile?.company}</TableCell>
 						</TableRow>
 					</TableBody>
 				</Table>
