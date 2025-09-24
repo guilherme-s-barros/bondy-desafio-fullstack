@@ -6,7 +6,8 @@
 		"start": "next dev --port 3333 --turbopack",
 		"build": "next build --turbopack",
 		"lint": "biome check",
-		"lint:fix": "biome check --write"
+		"lint:fix": "biome check --write",
+		"graphql:generate": "graphql-codegen --verbose"
 	},
 	"dependencies": {
 		"@apollo/client": "^4.0.5",
@@ -26,6 +27,10 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.2.4",
+		"@graphql-codegen/cli": "^6.0.0",
+		"@graphql-codegen/typescript": "^5.0.0",
+		"@graphql-codegen/typescript-operations": "^5.0.0",
+		"@graphql-codegen/typescript-react-apollo": "^4.3.3",
 		"@tailwindcss/postcss": "^4",
 		"@types/node": "^20",
 		"@types/react": "^19",

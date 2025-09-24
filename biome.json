@@ -15,7 +15,8 @@
 			"!build/**/*",
 			"!.serverless/**/*",
 			"!coverage/**/*",
-			"!.next/**/*"
+			"!.next/**/*",
+			"!**/graphql/generated.ts"
 		]
 	},
 	"formatter": {
