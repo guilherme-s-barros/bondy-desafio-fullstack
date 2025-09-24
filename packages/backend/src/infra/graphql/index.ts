@@ -1,4 +1,4 @@
-import { ApolloServer } from '@apollo/server'
+import { ApolloServer, type ApolloServerPlugin } from '@apollo/server'
 import { ApolloServerPluginInlineTraceDisabled } from '@apollo/server/plugin/disabled'
 import { buildSubgraphSchema } from '@apollo/subgraph'
 import {
@@ -7,6 +7,7 @@ import {
 } from '@as-integrations/aws-lambda'
 
 import { connection } from '../mongoose/db/connection'
+import { cookiesPlugin } from './plugins/cookies-plugin'
 import { setHeadersPlugin } from './plugins/set-headers-plugin'
 import resolvers from './resolvers'
 import typeDefs from './typeDefs'
@@ -17,7 +18,11 @@ const requestHandler = handlers.createAPIGatewayProxyEventRequestHandler()
 
 const apolloServer = new ApolloServer({
 	schema,
-	plugins: [ApolloServerPluginInlineTraceDisabled(), setHeadersPlugin],
+	plugins: [
+		ApolloServerPluginInlineTraceDisabled(),
+		setHeadersPlugin,
+		cookiesPlugin,
+	] as ApolloServerPlugin[],
 	includeStacktraceInErrorResponses: true,
 	status400ForVariableCoercionErrors: true,
 	introspection: true,
@@ -37,6 +42,7 @@ const buildContext = startServerAndCreateLambdaHandler(
 				event,
 				context,
 				setHeaders: [],
+				cookies: {},
 			}
 		},
 	},
