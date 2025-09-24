@@ -1,7 +1,7 @@
 import { generateToken } from '@/infra/auth/jwt'
 import { makeAuthenticateUseCase } from '@/use-cases/factories/make-authenticate-use-case'
 
-import type { SetHeadersContext } from '../../plugins/set-headers-plugin'
+import type { GraphQLContext } from '../../types/context'
 
 export interface AuthenticateArgs {
 	email: string
@@ -10,7 +10,7 @@ export interface AuthenticateArgs {
 
 export async function authenticate(
 	args: AuthenticateArgs,
-	context: SetHeadersContext,
+	context: GraphQLContext,
 ) {
 	const { email, password } = args
 
@@ -20,7 +20,8 @@ export async function authenticate(
 		const { user } = await useCase.execute(email, password)
 		const token = generateToken(user.id)
 
-		const cookieString = `auth=${token}; HttpOnly; Path=/; Max-Age=3600; SameSite=None; Secure`
+		const expiration = 86400 * 7 // 7 days
+		const cookieString = `auth=${token}; HttpOnly; Path=/; Max-Age=${expiration};`
 
 		context.setHeaders.push({
 			key: 'Set-Cookie',

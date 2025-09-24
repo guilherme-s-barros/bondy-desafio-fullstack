@@ -1,11 +1,8 @@
 import { type AuthenticateArgs, authenticate } from './authenticate'
 
-import type { SetHeadersContext } from '../../plugins/set-headers-plugin'
+import type { GraphQLContext } from '../../types/context'
 
 export default {
-	authenticate: (
-		_: never,
-		args: AuthenticateArgs,
-		context: SetHeadersContext,
-	) => authenticate(args, context),
+	authenticate: (_: never, args: AuthenticateArgs, context: GraphQLContext) =>
+		authenticate(args, context),
 }
