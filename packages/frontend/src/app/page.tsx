@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client'
+import { redirect } from 'next/navigation'
+import { use } from 'react'
 
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { getClient } from '@/lib/apollo-client'
@@ -16,14 +18,22 @@ const GET_PROFILE = gql`
 	}
 `
 
-export default async function Home() {
+async function fetchProfile() {
 	const client = await getClient()
 
-	const { data } = await client.query<GetProfileQuery>({
-		query: GET_PROFILE,
-	})
+	try {
+		const { data } = await client.query<GetProfileQuery>({
+			query: GET_PROFILE,
+		})
 
-	const profile = data?.getProfile
+		return data?.getProfile
+	} catch {
+		redirect('/sign-in')
+	}
+}
+
+export default function Home() {
+	const profile = use(fetchProfile())
 
 	return (
 		<main className="font-sans flex h-screen items-center justify-center">
