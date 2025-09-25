@@ -6,6 +6,8 @@ import {
 } from '@apollo/client-integration-nextjs'
 import { cookies } from 'next/headers'
 
+import { env } from '@/env'
+
 export const { getClient } = registerApolloClient(async () => {
 	const cookiesStore = await cookies()
 	const cookieHeader = cookiesStore.toString()
@@ -13,7 +15,7 @@ export const { getClient } = registerApolloClient(async () => {
 	return new ApolloClient({
 		cache: new InMemoryCache(),
 		link: new HttpLink({
-			uri: 'http://localhost:3000/local/desafio',
+			uri: env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
 			headers: {
 				Cookie: cookieHeader,
 			},

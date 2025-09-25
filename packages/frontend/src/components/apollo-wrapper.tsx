@@ -7,9 +7,11 @@ import {
 	InMemoryCache,
 } from '@apollo/client-integration-nextjs'
 
+import { env } from '@/env'
+
 function makeClient() {
 	const httpLink = new HttpLink({
-		uri: 'http://localhost:3000/local/desafio',
+		uri: env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
 		credentials: 'include',
 	})
 
