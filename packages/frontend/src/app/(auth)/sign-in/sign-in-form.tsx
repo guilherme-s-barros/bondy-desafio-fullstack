@@ -2,8 +2,7 @@
 
 import { gql } from '@apollo/client'
 import { useMutation } from '@apollo/client/react'
-import { CheckCircleIcon } from 'lucide-react'
-import Link from 'next/link'
+import { LogInIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
@@ -26,7 +25,7 @@ const AUTHENTICATE = gql`
 
 export function SignInForm() {
 	const navigate = useRouter()
-	const [authenticate, { loading, data }] = useMutation(AUTHENTICATE)
+	const [authenticate, { loading, error, called }] = useMutation(AUTHENTICATE)
 
 	async function handleAuthenticate(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault()
@@ -51,44 +50,40 @@ export function SignInForm() {
 		}
 	}
 
+	const success = called && !error
+
 	return (
 		<form
 			className="flex w-full flex-col space-y-4"
 			onSubmit={handleAuthenticate}
 		>
-			<div className="space-y-2">
-				<Label>Seu e-mail</Label>
+			<div className="space-y-1">
+				<Label>E-mail</Label>
+
 				<Input
 					type="email"
+					className="bg-background"
 					name="email"
 					placeholder="Informe seu e-mail"
 					required
 				/>
 			</div>
 
-			<div className="space-y-2">
-				<Label>Sua senha</Label>
+			<div className="space-y-1">
+				<Label>Senha</Label>
+
 				<Input
 					type="password"
+					className="bg-background"
 					name="password"
 					placeholder="Informe sua senha"
 					required
 				/>
 			</div>
 
-			{data ? (
-				<Button type="submit" disabled variant="success">
-					<CheckCircleIcon />
-					Sucesso
-				</Button>
-			) : (
-				<Button type="submit" disabled={loading}>
-					Continuar
-				</Button>
-			)}
-
-			<Button variant="link" asChild>
-				<Link href="#visual-only-link">Não possuo uma conta</Link>
+			<Button type="submit" disabled={loading || success}>
+				Continuar
+				<LogInIcon />
 			</Button>
 		</form>
 	)
