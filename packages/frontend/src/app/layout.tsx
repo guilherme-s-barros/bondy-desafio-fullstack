@@ -6,6 +6,7 @@ import { ApolloWrapper } from '@/components/apollo-wrapper'
 
 import './globals.css'
 
+import { ThemeProvider } from '@/components/theme/provider'
 import { Toaster } from '@/components/ui/sonner'
 
 const geistSans = Geist({
@@ -33,12 +34,19 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="pt-BR">
+		<html lang="pt-BR" suppressHydrationWarning>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<ApolloWrapper>{children}</ApolloWrapper>
-				<Toaster richColors />
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange={false}
+				>
+					<ApolloWrapper>{children}</ApolloWrapper>
+					<Toaster richColors />
+				</ThemeProvider>
 			</body>
 		</html>
 	)
