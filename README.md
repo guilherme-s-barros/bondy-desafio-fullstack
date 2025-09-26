@@ -1,9 +1,11 @@
-# bondy-desafio-fullstack
+# Solução bondy-desafio-fullstack
 
 ## Estrutura do repositório:
+
 Este projeto é um monorepo construído com Lerna (para saber mais => https://lerna.js.org/)
 
 - `backend` (API Graphql para realizar desafio de backend)
+
 - `frontend` (Repo para criação do frontend do desafio)
 
 ```
@@ -15,18 +17,35 @@ packages/
         serverless.yml
     frontend/
         package.json
-
 package.json
 ```
-Para executar os scripts presentes nos arquivos package.json:
 
-- `yarn lerna run` + comando (ex: `yarn lerna run test:coverage`)
-- Em um projeto específico `yarn lerna run start --scope=backend`, o scope é o name que está no package.json
-- Também é possível executar os comandos normalmente entrando na pasta especifica do projeto.
+## Rodar a aplicação:
 
-## O que deve ser feito
+```
+# lerna run start
+yarn start
+```
+
+Após isso, entre na aplicação em `http://localhost:3333`
+
+> [!NOTE]
+> Você será redirecionado automaticamente para /sign-in, por não estar logado. Basta logar com o e-mail 'desafio@bondy.com.br' e senha '123456'.
+
+> [!NOTE]
+> As páginas de cadastro e home são meramente ilustrativas.
+
+## Outros scripts
+
+```
+# Rodar testes unitários
+yarn test
+```
+
+## Instruções do desafio
 
 ### Backend:
+
 Utilizar a estrutura existente para criar uma mutation para realização de um login, a mesma deve receber email e senha e fazer verificação no banco se as informações estão corretas:
 - O projeto está configurado com Node 18, dar yarn na raiz para baixar dependências.
 - O projeto já está configurado apontado para o banco MongoDB de testes;
@@ -37,12 +56,14 @@ Utilizar a estrutura existente para criar uma mutation para realização de um l
 - O projeto deve ter uma autenticação usando JWT;
 
 ### Frontend:
+
 Criar um projeto frontend dentro da pasta packages/frontend:
 - O projeto deve se conectar com o backend e realizar as consultas via graphql;
 - Deve conter uma pagina de login, com campo de e-mail e senha;
 - Ao passar os dados corretamente o usuário deve ser direciona a uma pagina de boas-vindas;
 
 ### Orientações gerais
+
 - Não aceitaremos prs nesse projeto, você precisa criar um fork desse projeto e mandar o link do projeto publicado no seu github.
 
 
