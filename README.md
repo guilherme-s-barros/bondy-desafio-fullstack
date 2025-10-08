@@ -22,15 +22,29 @@ package.json
 
 ## Rodar a aplicação:
 
+### Instalar dependências
+
 ```
-# lerna run start
-yarn start
+yarn install # Ou simplesmente yarn
+```
+
+### Configurar variáveis ambiente para o funcionamento do frontend
+
+```
+cp packages/frontend/.env.local.example packages/frontend/.env.local
+```
+
+### Executar
+
+```
+yarn start # Ou lerna run start
 ```
 
 Após isso, entre na aplicação em `http://localhost:3333`
 
 > [!NOTE]
-> Você será redirecionado automaticamente para /sign-in, por não estar logado. Basta logar com o e-mail 'desafio@bondy.com.br' e senha '123456'.
+> Você será redirecionado automaticamente para /sign-in, por não estar logado.
+Basta logar com o e-mail 'desafio@bondy.com.br' e senha '123456'.
 
 > [!NOTE]
 > As páginas de cadastro e home são meramente ilustrativas.
@@ -65,5 +79,3 @@ Criar um projeto frontend dentro da pasta packages/frontend:
 ### Orientações gerais
 
 - Não aceitaremos prs nesse projeto, você precisa criar um fork desse projeto e mandar o link do projeto publicado no seu github.
-
-
